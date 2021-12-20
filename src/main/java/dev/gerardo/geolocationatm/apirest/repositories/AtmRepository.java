@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface AtmRepository extends MongoRepository<Atm, String> {
 
-    List<Atm> findAtmsByCoordinates(Long latitude, Long longitude);
+    List<Atm> findAtmsByLatitudeAndLongitude(Long latitude, Long longitude);
 
 }

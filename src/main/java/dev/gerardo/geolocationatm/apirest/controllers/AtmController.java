@@ -29,7 +29,7 @@ public class AtmController {
      * @param longitude longitud de tu posición actual.
      * @return un ohjeto de tipo ResponseEntity con la lista de Atms cercanos.
      */
-    @GetMapping
+    @GetMapping("/filter")
     public ResponseEntity<List<AtmDTO>> findAtmsByCoordinates(
             @RequestParam(name = "latitude", required = true) Long latitude,
             @RequestParam(name = "longitude", required = true) Long longitude
@@ -43,4 +43,22 @@ public class AtmController {
         List<AtmDTO> dtos = result.get().stream().map(AtmMapper::mapAtm).collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
+
+    /**
+     * Endpoint para ver toda la lista de atms en el sistema.
+     * @return ResponseEntity con la información de los atms del sistema.
+     * @throws NotFoundException si no hay atm alguno en el sistema.
+     */
+    @GetMapping
+    public ResponseEntity<List<AtmDTO>> findAllAtms() {
+        Optional<List<Atm>> result = service.findAllAtms();
+    
+        if (!result.isPresent()) {
+            throw new NotFoundException("No hay atms en la base de datos");
+        }
+
+        List<AtmDTO> dtos = result.get().stream().map(AtmMapper::mapAtm).collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
+    }
+
 }

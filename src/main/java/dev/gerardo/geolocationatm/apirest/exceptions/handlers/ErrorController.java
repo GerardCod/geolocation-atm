@@ -19,6 +19,7 @@ public class ErrorController {
     Map<String, String> response = new HashMap<>();
     response.put("message", ex.getMessage());
     response.put("detailedError", Arrays.toString(ex.getStackTrace()));
+    response.put("cause", ex.getCause().toString());     
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
   }
 
