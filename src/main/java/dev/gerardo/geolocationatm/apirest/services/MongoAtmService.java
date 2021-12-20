@@ -1,7 +1,7 @@
-package dev.gerardo.geolocationatm.apirest.models.services;
+package dev.gerardo.geolocationatm.apirest.services;
 
 import dev.gerardo.geolocationatm.apirest.models.entities.Atm;
-import dev.gerardo.geolocationatm.apirest.models.repositories.AtmRepository;
+import dev.gerardo.geolocationatm.apirest.repositories.AtmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

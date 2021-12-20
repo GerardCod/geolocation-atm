@@ -1,4 +1,4 @@
-package dev.gerardo.geolocationatm.apirest.models.repositories;
+package dev.gerardo.geolocationatm.apirest.repositories;
 
 import dev.gerardo.geolocationatm.apirest.models.entities.Atm;
 import org.springframework.data.mongodb.repository.MongoRepository;

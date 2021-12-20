@@ -4,7 +4,7 @@ import dev.gerardo.geolocationatm.apirest.exceptions.NotFoundException;
 import dev.gerardo.geolocationatm.apirest.mappers.AtmMapper;
 import dev.gerardo.geolocationatm.apirest.models.dto.AtmDTO;
 import dev.gerardo.geolocationatm.apirest.models.entities.Atm;
-import dev.gerardo.geolocationatm.apirest.models.services.AtmService;
+import dev.gerardo.geolocationatm.apirest.services.AtmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

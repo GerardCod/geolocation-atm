@@ -1,4 +1,4 @@
-package dev.gerardo.geolocationatm.apirest.models.services;
+package dev.gerardo.geolocationatm.apirest.services;
 
 import dev.gerardo.geolocationatm.apirest.models.entities.Atm;
 
