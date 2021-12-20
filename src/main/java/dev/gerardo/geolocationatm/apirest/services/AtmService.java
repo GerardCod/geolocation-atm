@@ -10,4 +10,6 @@ public interface AtmService {
     Optional<List<Atm>> findAtmsByCoordinates(Long latitude, Long longitude);
 
     Optional<List<Atm>> findAllAtms();
+    
+    Optional<List<Atm>> findAtmsByZipCodeAndState(String zipCode, String state);
 }

@@ -29,7 +29,7 @@ public class AtmController {
      * @param longitude longitud de tu posición actual.
      * @return un ohjeto de tipo ResponseEntity con la lista de Atms cercanos.
      */
-    @GetMapping("/filter")
+    @GetMapping("/coordinates")
     public ResponseEntity<List<AtmDTO>> findAtmsByCoordinates(
             @RequestParam(name = "latitude", required = true) Long latitude,
             @RequestParam(name = "longitude", required = true) Long longitude
@@ -43,7 +43,29 @@ public class AtmController {
         List<AtmDTO> dtos = result.get().stream().map(AtmMapper::mapAtm).collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
-
+    
+    /**
+     * Endpoint para listar atms por el código postal y el estado.
+     * @param zipCode Código postal del usuario.
+     * @param state Estado donde se encuentra el estado.
+     * @return ResponseEntity con la información del código postal y el estado.
+     * @throws NotFoundException si no se encuentran atms cerca de tu área.
+     */
+    @GetMapping("/address")
+    public ResponseEntity<List<Atm>> findAtmByAddress(
+    		@RequestParam(name = "zipCode", required = true) String zipCode,
+    		@RequestParam(name = "state", required = true) String state
+    ) {
+    	
+    	Optional<List<Atm>> result = service.findAtmsByZipCodeAndState(zipCode, state);
+    	
+    	if (result.isEmpty()) {
+    		throw new NotFoundException("No hay atms cerca de tu área");
+    	}
+    	
+    	return ResponseEntity.ok(result.get());
+    }
+    
     /**
      * Endpoint para ver toda la lista de atms en el sistema.
      * @return ResponseEntity con la información de los atms del sistema.
