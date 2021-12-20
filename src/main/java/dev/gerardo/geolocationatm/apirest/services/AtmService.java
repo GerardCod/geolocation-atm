@@ -9,4 +9,5 @@ public interface AtmService {
 
     Optional<List<Atm>> findAtmsByCoordinates(Long latitude, Long longitude);
 
+    Optional<List<Atm>> findAllAtms();
 }

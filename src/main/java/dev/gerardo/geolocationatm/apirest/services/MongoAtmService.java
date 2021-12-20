@@ -24,4 +24,15 @@ public class MongoAtmService implements AtmService {
 
         return Optional.empty();
     }
+
+    @Override
+    public Optional<List<Atm>> findAllAtms() {
+        List<Atm> result = repository.findAll();
+
+        if (result.isEmpty()) {
+            return Optional.of(result);
+        }
+        
+        return Optional.empty();
+    }
 }
