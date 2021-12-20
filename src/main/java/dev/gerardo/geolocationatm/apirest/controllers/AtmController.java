@@ -59,7 +59,7 @@ public class AtmController {
     	
     	Optional<List<Atm>> result = service.findAtmsByZipCodeAndState(zipCode, state);
     	
-    	if (result.isEmpty()) {
+    	if (!result.isPresent()) {
     		throw new NotFoundException("No hay atms cerca de tu área");
     	}
     	

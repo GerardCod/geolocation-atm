@@ -1,8 +1,12 @@
 package dev.gerardo.geolocationatm.apirest.exceptions;
 
-public class NotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-    public NotFoundException(String message) {
+public class NotFoundException extends RuntimeException {
+	private static final long serialVersionUID = -4827754139319608798L;
+
+	public NotFoundException(String message) {
         super(message);
     }
 

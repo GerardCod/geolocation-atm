@@ -43,7 +43,7 @@ public class MongoAtmService implements AtmService {
 	public Optional<List<Atm>> findAtmsByZipCodeAndState(String zipCode, String state) {
 		List<Atm> result = repository.findAtmsByZipCodeAndState(zipCode, state);
 		
-		if (result.isEmpty()) {
+		if (!result.isEmpty()) {
 			return Optional.of(result);
 		}
 		
