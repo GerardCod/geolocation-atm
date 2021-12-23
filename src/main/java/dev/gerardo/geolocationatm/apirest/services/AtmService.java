@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AtmService {
 
-    Optional<List<Atm>> findAtmsByCoordinates(Long latitude, Long longitude);
+    Optional<List<Atm>> findAtmsByCoordinates(Double latitude, Double longitude);
 
     Optional<List<Atm>> findAllAtms();
     

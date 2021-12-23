@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public interface AtmRepository extends MongoRepository<Atm, String> {
 
-    List<Atm> findAtmsByLatitudeAndLongitude(Long latitude, Long longitude);
-    
     @Query("{'address': { $regex: ?0 }, 'state': ?1}")
     List<Atm> findAtmsByZipCodeAndState(String zipCode, String state);
     

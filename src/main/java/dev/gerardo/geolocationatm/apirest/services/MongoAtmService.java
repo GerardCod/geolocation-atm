@@ -1,5 +1,6 @@
 package dev.gerardo.geolocationatm.apirest.services;
 
+import dev.gerardo.geolocationatm.apirest.models.dto.Point;
 import dev.gerardo.geolocationatm.apirest.models.entities.Atm;
 import dev.gerardo.geolocationatm.apirest.repositories.AtmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MongoAtmService implements AtmService {
@@ -17,12 +19,19 @@ public class MongoAtmService implements AtmService {
     @Autowired
     private AtmRepository repository;
 
-    @Override
-    public Optional<List<Atm>> findAtmsByCoordinates(Long latitude, Long longitude) {
-        List<Atm> result = repository.findAtmsByLatitudeAndLongitude(latitude, longitude);
+    @Autowired
+    private GeolocationService service;
 
-        if (!result.isEmpty()) {
-            return Optional.of(result);
+    @Override
+    public Optional<List<Atm>> findAtmsByCoordinates(Double latitude, Double longitude) {
+        List<Atm> result = repository.findAll();
+        Point user = new Point(latitude, longitude);
+        List<Atm> resultFilter = result.stream()
+                .filter(p -> service.calculateDistance(user, Point.fromAtm(p)) < 1.5)
+                .collect(Collectors.toList());
+
+        if (!resultFilter.isEmpty()) {
+            return Optional.of(resultFilter);
         }
 
         return Optional.empty();

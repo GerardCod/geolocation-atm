@@ -31,8 +31,8 @@ public class AtmController {
      */
     @GetMapping("/coordinates")
     public ResponseEntity<List<AtmDTO>> findAtmsByCoordinates(
-            @RequestParam(name = "latitude", required = true) Long latitude,
-            @RequestParam(name = "longitude", required = true) Long longitude
+            @RequestParam(name = "latitude", required = true) Double latitude,
+            @RequestParam(name = "longitude", required = true) Double longitude
     ) {
         Optional<List<Atm>> result = service.findAtmsByCoordinates(latitude, longitude);
 
