@@ -22,8 +22,8 @@ public class MongoAtmService implements AtmService {
     private GeolocationService service;
 
     @Override
-    public Optional<List<Atm>> findAtmsByCoordinates(Double latitude, Double longitude, String state) {
-        List<Atm> result = repository.findAtmsByState(state);
+    public Optional<List<Atm>> findAtmsByCoordinates(Double latitude, Double longitude) {
+        List<Atm> result = repository.findAll();
         Point user = new Point(latitude, longitude);
         List<Atm> resultFilter = result.stream()
                 .filter(p -> service.calculateDistance(user, Point.fromAtm(p)) < 10)

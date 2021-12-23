@@ -12,4 +12,5 @@ public class AtmDTO {
     private String state;
     private String address;
     private String street;
+    private String type;
 }

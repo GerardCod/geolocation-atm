@@ -12,6 +12,7 @@ public class AtmMapper {
         dto.setState(atm.getState());
         dto.setAddress(atm.getAddress());
         dto.setStreet(atm.getStreet());
+        dto.setType(atm.getType());
         return dto;
     }
 
