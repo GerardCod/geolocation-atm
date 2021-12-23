@@ -32,9 +32,10 @@ public class AtmController {
     @GetMapping("/coordinates")
     public ResponseEntity<List<AtmDTO>> findAtmsByCoordinates(
             @RequestParam(name = "latitude", required = true) Double latitude,
-            @RequestParam(name = "longitude", required = true) Double longitude
+            @RequestParam(name = "longitude", required = true) Double longitude,
+            @RequestParam(name = "state", required = true) String state
     ) {
-        Optional<List<Atm>> result = service.findAtmsByCoordinates(latitude, longitude);
+        Optional<List<Atm>> result = service.findAtmsByCoordinates(latitude, longitude, state);
 
         if (!result.isPresent()) {
             throw new NotFoundException("No hay atms cercanos a tu ubicación");

@@ -17,6 +17,7 @@ public class GeolocationServiceImpl implements GeolocationService {
         Double sinLongitude = Math.sin(longitude / 2) * Math.sin(longitude / 2);
         Double angle = sinLatitude + Math.cos(Math.toRadians(a.getLatitude())) * Math.cos(Math.toRadians(b.getLatitude())) * sinLongitude;
         Double c = 2 * Math.atan2(Math.sqrt(angle), Math.sqrt(1 - angle));
-        return c * radius;
+        Double distance = c * radius;
+        return distance;
     }
 }

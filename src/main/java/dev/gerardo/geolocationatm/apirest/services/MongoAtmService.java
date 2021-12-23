@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,11 +22,11 @@ public class MongoAtmService implements AtmService {
     private GeolocationService service;
 
     @Override
-    public Optional<List<Atm>> findAtmsByCoordinates(Double latitude, Double longitude) {
-        List<Atm> result = repository.findAll();
+    public Optional<List<Atm>> findAtmsByCoordinates(Double latitude, Double longitude, String state) {
+        List<Atm> result = repository.findAtmsByState(state);
         Point user = new Point(latitude, longitude);
         List<Atm> resultFilter = result.stream()
-                .filter(p -> service.calculateDistance(user, Point.fromAtm(p)) < 1.5)
+                .filter(p -> service.calculateDistance(user, Point.fromAtm(p)) < 10)
                 .collect(Collectors.toList());
 
         if (!resultFilter.isEmpty()) {
