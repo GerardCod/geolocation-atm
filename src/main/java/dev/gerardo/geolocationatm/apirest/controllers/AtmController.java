@@ -83,4 +83,21 @@ public class AtmController {
         return ResponseEntity.ok(dtos);
     }
 
+    @GetMapping("/input")
+    public ResponseEntity<List<AtmDTO>> findAtmsByInput(
+            @RequestParam("latitude") Double latitude,
+            @RequestParam("longitude") Double longitude,
+            @RequestParam("zipCode") String zipCode,
+            @RequestParam("state") String state
+    ) {
+        Optional<List<Atm>> result = service.findAtmsByInput(latitude, longitude, zipCode, state);
+
+        if (!result.isPresent()) {
+            throw new NotFoundException("No hay atms cerca de ti");
+        }
+
+        List<AtmDTO> dtos = result.get().stream().map(AtmMapper::mapAtm).collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
+    }
+
 }

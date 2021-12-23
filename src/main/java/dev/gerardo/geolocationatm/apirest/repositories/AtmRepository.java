@@ -10,9 +10,10 @@ import java.util.List;
 @Repository
 public interface AtmRepository extends MongoRepository<Atm, String> {
 
-    @Query("{'address': { $regex: ?0 }, 'state': ?1}")
+    @Query("{'address': { $regex: ?0 }, 'state': ?1, 'type': 'ATM'}")
     List<Atm> findAtmsByZipCodeAndState(String zipCode, String state);
 
     List<Atm> findAtmsByState(String state);
 
+    List<Atm> findAtmsByType(String type);
 }
